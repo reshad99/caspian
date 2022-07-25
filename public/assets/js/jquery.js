@@ -1204,6 +1204,46 @@ $('#kt_sign_in_submit').click(function(){
       }
     })
   })
+  
+
+  $(document).on('click', '.confirm', function(){
+    id = $(this).data('id')
+    table = $(this).data('table')
+
+    Swal.fire({
+      title: 'Əminsiniz?',
+      text: "Bu əməliyyatı geri qaytara bilməyəcəksiniz!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Bəli, təsdiqlə!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        td = $(this).closest('td')
+        td.find('.fa-check').css('display', 'none')
+        td.find('.spinner').css('display', 'inline-block')
+  
+    $.ajax({
+      url: '/admin/confirm/'+table,
+      type: 'post',
+      data: {id:id, table:table},
+      dataType: 'json',
+      success: function(data){
+        td.find('.confirm').fadeOut()
+      }
+    })
+        Swal.fire(
+          'Təsdiqləndi!',
+          'Məlumat təsdiqləndi.',
+          'success'
+        )
+      }
+    })
+
+  })
+
+  
 
  
 

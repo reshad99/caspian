@@ -1,3 +1,4 @@
+$.ajaxSetup({headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}});
 $(document).ready(function () {
 	"use strict"; // start of use strict
 
@@ -547,3 +548,58 @@ $(document).ready(function () {
 		}
 	}
 });
+
+$(document).on('submit', '#reservation', function(){
+    let form = $('#reservation').serialize();
+
+	$('.spinner').css('display', 'block')
+	$('.button_text').css('display', 'none')
+	$('#reservation').css('opacity', '.4')
+
+	
+
+	$.ajax({
+		url: '/reservation',
+		type: 'POST',
+		data: form,
+		dataType: 'json',
+		success: function(data){
+		swal({
+			title: data.message,
+			text: "You clicked the button!",
+			icon: "success",
+			button: "Aww yiss!",
+			});
+
+		  $('.spinner').css('display', 'none')
+		  $('.button_text').css('display', 'block')
+		  $('#reservation').css('opacity', '')
+		  $('#reservation').trigger('reset')
+  
+		},
+		error: function(data){
+		  $.each(data.responseJSON.errors, function(_key, e){
+			$('#'+_key).css('border-color', 'red')
+			$('#'+_key).closest('div').find('.input-group-text').css('border-color', 'red');
+			$('#'+_key).val('')
+			$('#'+_key).attr('placeholder', e[0])
+			$('body').append('<style>#'+_key+'::placeholder{color:red}</style>')
+  
+		  });
+
+		  if(data.responseJSON.status == 0)
+		  {
+			swal({
+				title: data.responseJSON.message,
+				text: "You clicked the button!",
+				icon: "success",
+				button: "Aww yiss!",
+			});
+		  }
+  
+		  $('.spinner').css('display', 'none')
+		  $('.button_text').css('display', 'block')
+		  $('#reservation').css('opacity', '')
+		}
+	  })
+})

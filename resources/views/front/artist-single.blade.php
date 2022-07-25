@@ -28,7 +28,7 @@
 
 									<h1>{{ $artist->name }}</h1>
 									<div class="hero__btns-2">
-										<a href="#modal-ticket" class="hero__btn hero__btn--green open-modal">Rezervasiya</a>
+										<a href="#reservation" class="hero__btn hero__btn--green open-modal">Rezervasiya</a>
 									</div>
 
 									
@@ -149,33 +149,27 @@
 
 	<!-- end main content -->
 
-	<form action="#" id="modal-ticket" class="zoom-anim-dialog modal modal--form mfp-hide">
+	<form action="javascript:void(0)" id="reservation" method="POST" class="zoom-anim-dialog modal modal--form mfp-hide">
 		<button class="modal__close" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"></path></svg></button>
 
 		<h4 class="sign__title">Rezervasiya</h4>
 		<span class="sign__text sign__text--small">İfaçını səhnəyə dəvət etmək üçün aşağıdakı bölmələri doldurun</span>
 		<br>
 
-
-		<!-- <div class="sign__group sign__group--row">
-			<label class="sign__label">Your balance:</label>
-			<span class="sign__value">$90.99</span>
-		</div> -->
-
 		<div class="sign__group sign__group--row">
 			<label class="sign__label" for="value">Ad və Soyad:</label>
-			<input type="text" class="sign__input" placeholder="Ad və Soyad" >
+			<input type="text" name="name" id="name" class="sign__input" placeholder="Ad və Soyad" >
 		</div>
 		<div class="sign__group sign__group--row">
 			<label class="sign__label" for="value">Telefon:</label>
-			<input type="number" class="sign__input" placeholder="Telefon" >
+			<input type="number" name="phone" id="phone" class="sign__input" placeholder="Telefon" >
 		</div>
 		<div class="sign__group sign__group--row">
 			<label class="sign__label" for="value">Email:</label>
-			<input type="email" class="sign__input" placeholder="Email" >
+			<input type="email" name="email" id="email" class="sign__input" placeholder="Email" >
 		</div>
 
-		<button class="sign__btn" type="button">Göndər</button>
+		<button class="sign__btn" type="submit"><span class="button_text">Göndər</span><img src="/images/spinner2.gif" class="spinner" style="width: 10%; display:none" alt=""></button>
 	</form>
 @endsection
 

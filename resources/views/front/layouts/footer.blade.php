@@ -251,6 +251,7 @@
 <!-- end modal info -->
 
 <!-- JS -->
+
 <script src="/assets-front/js/jquery-3.5.1.min.js"></script>
 <script src="/assets-front/js/bootstrap.bundle.min.js"></script>
 <script src="/assets-front/js/owl.carousel.min.js"></script>

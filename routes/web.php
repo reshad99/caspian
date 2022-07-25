@@ -57,6 +57,7 @@ Route::prefix('admin')->middleware('isLogout')->group(function () {
     Route::post('videos/update', 'App\Http\Controllers\Admin\MusicVideoController@update');
 
     Route::post('partners/update', 'App\Http\Controllers\Admin\PartnerController@update');
+    Route::post('confirm/reservations', 'App\Http\Controllers\Admin\ConfirmController@confirm');
 
     Route::post('top-check', 'App\Http\Controllers\Admin\AjaxController@top_check');
     Route::post('load-about-details', 'App\Http\Controllers\Admin\AjaxController@load_data');
@@ -88,6 +89,7 @@ Route::prefix('admin')->middleware('isLogin')->group(function () {
 Route::get('/', 'App\Http\Controllers\Front\IndexController@index');
 Route::get('about', 'App\Http\Controllers\Front\AboutController@index');
 Route::get('contact', 'App\Http\Controllers\Front\ContactController@index');
+Route::post('reservation', 'App\Http\Controllers\Front\ReservationController@post');
 Route::post('contact', 'App\Http\Controllers\Front\ContactController@post');
 Route::get('events', 'App\Http\Controllers\Front\EventController@index');
 Route::get('blogs', 'App\Http\Controllers\Front\BlogController@index');
